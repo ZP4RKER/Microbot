@@ -6,6 +6,7 @@ import me.zp4rker.core.logger.ZLogger;
 import me.zp4rker.core.yaml.ConfigurationSection;
 import me.zp4rker.core.yaml.file.Yaml;
 import me.zp4rker.microbot.util.YamlUtil;
+import net.dv8tion.jda.core.EmbedBuilder;
 import net.dv8tion.jda.core.entities.Message;
 import static me.zp4rker.microbot.util.MessageUtil.*;
 
@@ -21,11 +22,12 @@ public class DogCommand implements ICommand {
         bypassDeleteLogs(message);
 
         try{
-            ZLogger.info(YamlUtil.fromUrl("https://api.thedogapi.co.uk/v2/dog.php").replaceAll("\\\\([\"/])", "$1"));
             Yaml yaml = new Yaml();
-            yaml.loadFromString(YamlUtil.fromUrl("https://api.thedogapi.co.uk/v2/dog.php"));
+            yaml.loadFromString(YamlUtil.fromUrl("https://api.thedogapi.co.uk/v2/dog.php").replaceAll("\\\\([\"/])", "$1"));
 
             String url = ((ConfigurationSection) yaml.getList("data").get(0)).getString("url");
+            
+            message.getChannel().sendMessage(new EmbedBuilder().setThumbnail(url).build()).complete();
         } catch (Exception e) {
             e.printStackTrace();
             ZLogger.warn("Could not get data!");
