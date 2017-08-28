@@ -21,7 +21,7 @@ public class DogCommand implements ICommand {
         bypassDeleteLogs(message);
 
         try{
-            ZLogger.info(YamlUtil.fromUrl("https://api.thedogapi.co.uk/v2/dog.php").replaceAll("\\/", "/"));
+            ZLogger.info(YamlUtil.fromUrl("https://api.thedogapi.co.uk/v2/dog.php").replaceAll("\\\\([\"/])", "$1"));
             Yaml yaml = new Yaml();
             yaml.loadFromString(YamlUtil.fromUrl("https://api.thedogapi.co.uk/v2/dog.php"));
 
