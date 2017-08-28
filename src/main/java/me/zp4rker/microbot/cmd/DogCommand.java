@@ -29,7 +29,7 @@ public class DogCommand implements ICommand {
 
             String url = ((LinkedHashMap) yaml.getList("data").get(0)).get("url").toString();
 
-            message.getChannel().sendMessage(new EmbedBuilder().setThumbnail(url).build()).complete();
+            message.getChannel().sendMessage(new EmbedBuilder().setImage(url).build()).complete();
         } catch (Exception e) {
             e.printStackTrace();
             ZLogger.warn("Could not get data!");
