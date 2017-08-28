@@ -33,17 +33,21 @@ public class JokeCommand implements ICommand {
             URL url = new URL("https://icanhazdadjoke.com/");
             URLConnection uc = url.openConnection();
             uc.setRequestProperty("Accept", "text/plain");
+            uc.connect();
+
             InputStream is = uc.getInputStream();
             Scanner scanner = new Scanner(is);
             StringBuilder sb = new StringBuilder();
             while (scanner.hasNext()) {
                 sb.append(scanner.next());
             }
+            is.close();
 
             message.getChannel().sendMessage(new EmbedBuilder()
                     .setTitle(sb.toString())
                     .setColor(ColorUtil.randomColour()).build()).complete();
         } catch (Exception e) {
+            e.printStackTrace();
             ZLogger.warn("Could not send joke!");
         }
     }
