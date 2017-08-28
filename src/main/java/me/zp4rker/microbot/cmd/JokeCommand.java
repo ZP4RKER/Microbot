@@ -36,6 +36,7 @@ public class JokeCommand implements ICommand {
             uc.addRequestProperty("User-Agent", "Mozilla/5.0 (Windows NT 6.1; WOW64; rv:25.0) Gecko/20100101 Firefox/25.0");
             InputStream is = uc.getInputStream();
             Scanner scanner = new Scanner(is);
+            scanner.useDelimiter("\\A");
             StringBuilder sb = new StringBuilder();
             while (scanner.hasNext()) {
                 sb.append(scanner.next());
