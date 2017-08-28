@@ -23,6 +23,8 @@ public class Microbot {
 
         CommandHandler handler = new CommandHandler("/");
 
+        registerCommands(handler);
+
         JDA jda = new JDABuilder(AccountType.BOT).setToken(args[0])
                 .setEventManager(new AnnotatedEventManager())
                 .addEventListener(handler).buildAsync();
