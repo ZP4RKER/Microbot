@@ -27,6 +27,7 @@ public class DogCommand implements ICommand {
             String url = ((ConfigurationSection) yaml.getList("data").get(0)).getString("url");
             ZLogger.info(url);
         } catch (Exception e) {
+            e.printStackTrace();
             ZLogger.warn("Could not get data!");
         }
     }
