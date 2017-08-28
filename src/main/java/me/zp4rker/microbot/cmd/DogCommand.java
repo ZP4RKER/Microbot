@@ -3,12 +3,14 @@ package me.zp4rker.microbot.cmd;
 import me.zp4rker.core.command.ICommand;
 import me.zp4rker.core.command.RegisterCommand;
 import me.zp4rker.core.logger.ZLogger;
-import me.zp4rker.core.yaml.ConfigurationSection;
 import me.zp4rker.core.yaml.file.Yaml;
 import me.zp4rker.microbot.util.YamlUtil;
 import net.dv8tion.jda.core.EmbedBuilder;
 import net.dv8tion.jda.core.entities.Message;
-import static me.zp4rker.microbot.util.MessageUtil.*;
+
+import java.util.LinkedHashMap;
+
+import static me.zp4rker.microbot.util.MessageUtil.bypassDeleteLogs;
 
 /**
  * @author ZP4RKER
@@ -25,8 +27,8 @@ public class DogCommand implements ICommand {
             Yaml yaml = new Yaml();
             yaml.loadFromString(YamlUtil.fromUrl("https://api.thedogapi.co.uk/v2/dog.php").replaceAll("\\\\([\"/])", "$1"));
 
-            String url = ((ConfigurationSection) yaml.getList("data").get(0)).getString("url");
-            
+            String url = ((LinkedHashMap) yaml.getList("data").get(0)).get("url").toString();
+
             message.getChannel().sendMessage(new EmbedBuilder().setThumbnail(url).build()).complete();
         } catch (Exception e) {
             e.printStackTrace();
