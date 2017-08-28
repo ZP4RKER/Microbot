@@ -27,7 +27,7 @@ public class DogCommand implements ICommand {
             yaml.loadFromString(YamlUtil.fromUrl("https://api.thedogapi.co.uk/v2/dog.php").replaceAll("\\\\([\"/])", "$1"));
 
             String url = ((LinkedHashMap) yaml.getList("data").get(0)).get("url").toString();
-            selfDestruct(message.getChannel().sendMessage(url).complete(), 10000);
+            selfDestruct(message.getChannel().sendMessage(url).complete(), 20000);
 
         } catch (Exception e) {
             e.printStackTrace();
