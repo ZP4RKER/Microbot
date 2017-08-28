@@ -22,9 +22,9 @@ public class DogCommand implements ICommand {
 
         try{
             Yaml yaml = new Yaml();
-            yaml.loadFromString(YamlUtil.fromUrl("https://api.thedogapi.co.uk/v2/dog.php"));
+            yaml.loadFromString(YamlUtil.fromUrl("https://api.thedogapi.co.uk/v2/dog.php").replaceAll("\\/", "/"));
 
-            String url = ((ConfigurationSection) yaml.getList("data").get(0)).get("url").toString().replace("\\/", "/");
+            String url = ((ConfigurationSection) yaml.getList("data").get(0)).getString("url");
             ZLogger.info(url);
         } catch (Exception e) {
             e.printStackTrace();
