@@ -24,7 +24,7 @@ public class DogCommand implements ICommand {
             Yaml yaml = new Yaml();
             yaml.loadFromString(YamlUtil.fromUrl("https://api.thedogapi.co.uk/v2/dog.php"));
 
-            String url = ((ConfigurationSection) yaml.getList("data").get(0)).getString("url");
+            String url = ((ConfigurationSection) yaml.getList("data").get(0)).get("url").toString().replace("\\/", "/");
             ZLogger.info(url);
         } catch (Exception e) {
             e.printStackTrace();
