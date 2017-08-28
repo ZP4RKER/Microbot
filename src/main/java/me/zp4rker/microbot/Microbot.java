@@ -2,8 +2,7 @@ package me.zp4rker.microbot;
 
 import me.zp4rker.core.command.handler.CommandHandler;
 import me.zp4rker.core.logger.ZLogger;
-import me.zp4rker.microbot.cmd.CurrencyCommand;
-import me.zp4rker.microbot.cmd.DelayCommand;
+import me.zp4rker.microbot.cmd.*;
 import net.dv8tion.jda.core.AccountType;
 import net.dv8tion.jda.core.JDA;
 import net.dv8tion.jda.core.JDABuilder;
@@ -27,7 +26,13 @@ public class Microbot {
     private static void registerCommands(CommandHandler handler) {
         handler.registerCommand(new CurrencyCommand());
         handler.registerCommand(new DelayCommand());
-
+        handler.registerCommand(new EmbedCommand());
+        handler.registerCommand(new IMcApiCommand());
+        handler.registerCommand(new JokeCommand());
+        handler.registerCommand(new McApiCommand());
+        handler.registerCommand(new ReverseCommand());
+        handler.registerCommand(new SelfDestructCommand());
+        handler.registerCommand(new TimeCommand());
     }
 
 }
