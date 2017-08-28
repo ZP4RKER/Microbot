@@ -21,11 +21,11 @@ public class DogCommand implements ICommand {
         bypassDeleteLogs(message);
 
         try{
+            ZLogger.info(YamlUtil.fromUrl("https://api.thedogapi.co.uk/v2/dog.php").replaceAll("\\/", "/"));
             Yaml yaml = new Yaml();
             yaml.loadFromString(YamlUtil.fromUrl("https://api.thedogapi.co.uk/v2/dog.php"));
 
             String url = ((ConfigurationSection) yaml.getList("data").get(0)).getString("url");
-            ZLogger.info(YamlUtil.fromUrl("https://api.thedogapi.co.uk/v2/dog.php").replaceAll("\\/", "/"));
         } catch (Exception e) {
             e.printStackTrace();
             ZLogger.warn("Could not get data!");
