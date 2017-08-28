@@ -2,7 +2,7 @@ package me.zp4rker.core.command.handler;
 
 import me.zp4rker.core.command.ICommand;
 import me.zp4rker.core.command.RegisterCommand;
-import me.zp4rker.gbmain.GetBukkit;
+import me.zp4rker.microbot.Microbot;
 import net.dv8tion.jda.core.JDA;
 import net.dv8tion.jda.core.entities.*;
 import net.dv8tion.jda.core.events.message.MessageReceivedEvent;
@@ -48,7 +48,7 @@ public class CommandHandler {
         if (event.getAuthor().equals(event.getJDA().getSelfUser()) && !annotation.allowSelf()) return;
         if (!event.getAuthor().equals(event.getJDA().getSelfUser()) && !annotation.allowOthers()) return;
 
-        GetBukkit.async.submit(() -> invokeMethod(command, getParameters(splitContent, command, event.getMessage(),
+        Microbot.async.submit(() -> invokeMethod(command, getParameters(splitContent, command, event.getMessage(),
                 event.getJDA())));
     }
 

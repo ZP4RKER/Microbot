@@ -8,10 +8,15 @@ import net.dv8tion.jda.core.JDA;
 import net.dv8tion.jda.core.JDABuilder;
 import net.dv8tion.jda.core.hooks.AnnotatedEventManager;
 
+import java.util.concurrent.ExecutorService;
+import java.util.concurrent.Executors;
+
 /**
  * @author ZP4RKER
  */
 public class Microbot {
+
+    public static ExecutorService async = Executors.newCachedThreadPool();
 
     public static void main(String[] args) throws Exception {
         ZLogger.initialise();
