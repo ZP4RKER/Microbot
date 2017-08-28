@@ -1,18 +1,14 @@
 package me.zp4rker.microbot.cmd;
 
-import com.oracle.tools.packager.IOUtils;
 import me.zp4rker.core.command.ICommand;
 import me.zp4rker.core.command.RegisterCommand;
 import me.zp4rker.core.logger.ZLogger;
-import me.zp4rker.core.yaml.file.Yaml;
 import me.zp4rker.microbot.util.ColorUtil;
 import me.zp4rker.microbot.util.MessageUtil;
-import me.zp4rker.microbot.util.YamlUtil;
 import net.dv8tion.jda.core.EmbedBuilder;
 import net.dv8tion.jda.core.entities.Message;
 
 import java.io.InputStream;
-import java.io.InputStreamReader;
 import java.net.URL;
 import java.net.URLConnection;
 import java.util.Scanner;
