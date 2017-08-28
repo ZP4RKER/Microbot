@@ -32,9 +32,8 @@ public class JokeCommand implements ICommand {
                     .setColor(ColorUtil.randomColour()).build()).complete();*/
             URL url = new URL("https://icanhazdadjoke.com/");
             URLConnection uc = url.openConnection();
-            uc.setRequestProperty("Accept", "text/plain");
-            uc.connect();
-
+            uc.addRequestProperty("Accept", "text/plain");
+            uc.addRequestProperty("User-Agent", "Mozilla/5.0 (Windows NT 6.1; WOW64; rv:25.0) Gecko/20100101 Firefox/25.0");
             InputStream is = uc.getInputStream();
             Scanner scanner = new Scanner(is);
             StringBuilder sb = new StringBuilder();
