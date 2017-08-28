@@ -5,7 +5,6 @@ import me.zp4rker.core.command.RegisterCommand;
 import me.zp4rker.core.logger.ZLogger;
 import me.zp4rker.core.yaml.file.Yaml;
 import me.zp4rker.microbot.util.YamlUtil;
-import net.dv8tion.jda.core.EmbedBuilder;
 import net.dv8tion.jda.core.entities.Message;
 
 import java.util.LinkedHashMap;
@@ -29,7 +28,7 @@ public class DogCommand implements ICommand {
 
             String url = ((LinkedHashMap) yaml.getList("data").get(0)).get("url").toString();
 
-            message.getChannel().sendMessage(new EmbedBuilder().setImage(url).build()).complete();
+            message.getChannel().sendMessage(url).complete();
         } catch (Exception e) {
             e.printStackTrace();
             ZLogger.warn("Could not get data!");
