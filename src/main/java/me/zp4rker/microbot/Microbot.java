@@ -40,6 +40,7 @@ public class Microbot {
         handler.registerCommand(new ReverseCommand());
         handler.registerCommand(new SelfDestructCommand());
         handler.registerCommand(new TimeCommand());
+        handler.registerCommand(new DogCommand());
     }
 
 }
