@@ -9,7 +9,7 @@ import net.dv8tion.jda.core.entities.Message;
 
 import java.util.LinkedHashMap;
 
-import static me.zp4rker.microbot.util.MessageUtil.bypassDeleteLogs;
+import static me.zp4rker.microbot.util.MessageUtil.*;
 
 /**
  * @author ZP4RKER
@@ -27,8 +27,8 @@ public class DogCommand implements ICommand {
             yaml.loadFromString(YamlUtil.fromUrl("https://api.thedogapi.co.uk/v2/dog.php").replaceAll("\\\\([\"/])", "$1"));
 
             String url = ((LinkedHashMap) yaml.getList("data").get(0)).get("url").toString();
+            selfDestruct(message.getChannel().sendMessage(url).complete(), 10000);
 
-            message.getChannel().sendMessage(url).complete();
         } catch (Exception e) {
             e.printStackTrace();
             ZLogger.warn("Could not get data!");
