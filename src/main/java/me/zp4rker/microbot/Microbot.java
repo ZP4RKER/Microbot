@@ -16,6 +16,8 @@ import java.util.concurrent.Executors;
  */
 public class Microbot {
 
+    public static final String VERSION = "v1.0";
+
     public static ExecutorService async = Executors.newCachedThreadPool();
 
     public static void main(String[] args) throws Exception {
@@ -34,13 +36,13 @@ public class Microbot {
         handler.registerCommand(new CurrencyCommand());
         handler.registerCommand(new DelayCommand());
         handler.registerCommand(new EmbedCommand());
-        handler.registerCommand(new IMcApiCommand());
         handler.registerCommand(new JokeCommand());
-        handler.registerCommand(new McApiCommand());
         handler.registerCommand(new ReverseCommand());
         handler.registerCommand(new SelfDestructCommand());
         handler.registerCommand(new TimeCommand());
         handler.registerCommand(new DogCommand());
+        handler.registerCommand(new HelpCommand(handler));
+        handler.registerCommand(new InfoCommand(handler));
     }
 
 }
