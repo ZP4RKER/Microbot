@@ -31,8 +31,6 @@ public class MessageUtil {
         if (message.getGuild().getSelfMember().getPermissions().contains(Permission.MESSAGE_MANAGE)) {
             message.getTextChannel()
                     .deleteMessages(Arrays.asList(message, message.getChannel().sendMessage("`").complete())).complete();
-        } else {
-            message.delete().complete();
         }
     }
 
