@@ -34,7 +34,6 @@ public class CommandHandler {
     @SubscribeEvent
     public void handle(MessageReceivedEvent event) {
         if (event.getGuild() == null) return;
-        if (!event.getGuild().getId().equals("226865538247294976")) return;
         if (!event.getMessage().getContent().startsWith(prefix)) return;
 
         String[] splitContent = event.getMessage().getContent().replace(prefix, "").split(" ");
