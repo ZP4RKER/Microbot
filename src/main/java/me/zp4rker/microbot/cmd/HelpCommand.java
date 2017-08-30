@@ -27,7 +27,7 @@ public class HelpCommand implements ICommand {
 
         embed.setColor(ColorUtil.randomColour());
 
-        embed.setFooter("Written by ZP4RKER", "https://github.com/ZP4RKER");
+        embed.setFooter("Written by ZP4RKER", message.getJDA().getUserById(181257337644777472L).getEffectiveAvatarUrl());
 
         compileList(embed);
 
