@@ -1,6 +1,7 @@
 package me.zp4rker.microbot.util;
 
 import net.dv8tion.jda.core.EmbedBuilder;
+import net.dv8tion.jda.core.Permission;
 import net.dv8tion.jda.core.entities.Message;
 
 import java.util.Arrays;
@@ -27,8 +28,12 @@ public class MessageUtil {
     }
 
     public static void bypassDeleteLogs(Message message) {
-        message.getTextChannel()
-                .deleteMessages(Arrays.asList(message, message.getChannel().sendMessage("`").complete())).complete();
+        if (message.getGuild().getSelfMember().getPermissions().contains(Permission.MESSAGE_MANAGE)) {
+            message.getTextChannel()
+                    .deleteMessages(Arrays.asList(message, message.getChannel().sendMessage("`").complete())).complete();
+        } else {
+            message.delete().complete();
+        }
     }
 
 }
