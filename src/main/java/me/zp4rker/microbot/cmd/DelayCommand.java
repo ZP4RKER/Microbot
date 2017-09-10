@@ -29,7 +29,7 @@ public class DelayCommand implements ICommand {
 
             long delay = Long.parseLong(args[0]);
 
-            String msg = String.join(" ", Arrays.copyOfRange(args, 1, args.length - 1));
+            String msg = String.join(" ", Arrays.copyOfRange(args, 1, args.length));
 
             new Timer().schedule(new TimerTask() {
                 @Override
