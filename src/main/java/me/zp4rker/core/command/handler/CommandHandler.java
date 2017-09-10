@@ -36,7 +36,7 @@ public class CommandHandler {
         if (event.getGuild() == null) return;
         if (!event.getMessage().getContent().startsWith(prefix)) return;
 
-        String[] splitContent = event.getMessage().getContent().replace(prefix, "").split(" ");
+        String[] splitContent = event.getMessage().getRawContent().replace(prefix, "").split(" ");
         if (!commands.containsKey(splitContent[0])) return;
 
         Command command = commands.get(splitContent[0]);

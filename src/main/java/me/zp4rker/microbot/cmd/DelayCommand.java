@@ -3,6 +3,7 @@ package me.zp4rker.microbot.cmd;
 import me.zp4rker.core.command.ICommand;
 import me.zp4rker.core.command.RegisterCommand;
 import net.dv8tion.jda.core.entities.Message;
+import net.dv8tion.jda.core.entities.User;
 
 import java.util.Arrays;
 import java.util.Timer;
