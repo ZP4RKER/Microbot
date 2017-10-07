@@ -16,8 +16,8 @@ import java.util.concurrent.Executors;
  */
 public class Microbot {
 
+    public static JDA jda;
     public static final String VERSION = "v1.0";
-
     public static ExecutorService async = Executors.newCachedThreadPool();
 
     public static void main(String[] args) throws Exception {
@@ -27,7 +27,7 @@ public class Microbot {
 
         registerCommands(handler);
 
-        JDA jda = new JDABuilder(AccountType.BOT).setToken(args[0])
+        jda = new JDABuilder(AccountType.BOT).setToken(args[0])
                 .setEventManager(new AnnotatedEventManager())
                 .addEventListener(handler).buildAsync();
     }
@@ -43,6 +43,7 @@ public class Microbot {
         handler.registerCommand(new DogCommand());
         handler.registerCommand(new HelpCommand(handler));
         handler.registerCommand(new InfoCommand(handler));
+        handler.registerCommand(new RestartCommand());
     }
 
 }

@@ -30,7 +30,7 @@ public class MessageUtil {
     public static void bypassDeleteLogs(Message message) {
         if (message.getGuild().getSelfMember().getPermissions().contains(Permission.MESSAGE_MANAGE)) {
             message.getTextChannel()
-                    .deleteMessages(Arrays.asList(message, message.getChannel().sendMessage("`").complete())).complete();
+                    .deleteMessages(Arrays.asList(message, message.getChannel().sendMessage("`").complete())).queue();
         }
     }
 

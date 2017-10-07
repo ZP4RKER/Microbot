@@ -1,8 +1,6 @@
 package me.zp4rker.core.logger;
 
-
 import java.util.logging.ConsoleHandler;
-import java.util.logging.Level;
 import java.util.logging.Logger;
 
 /**
@@ -10,10 +8,11 @@ import java.util.logging.Logger;
  */
 public class ZLogger {
 
-    private static Logger logger = Logger.getLogger("ZLogger");
+    private static Logger logger;
 
     public static void initialise() {
         try {
+            logger = Logger.getLogger("GBVerify");
             ConsoleHandler cHandler = new ConsoleHandler();
             cHandler.setFormatter(new ZFormatter());
             logger.addHandler(cHandler);
@@ -31,8 +30,12 @@ public class ZLogger {
         logger.warning(message + "\n\n");
     }
 
+    public static void err(String message) {
+        logger.log(new CustomLevel("ERR", 1), message + "\n\n");
+    }
+
     public static void debug(String message) {
-        logger.log(Level.OFF, "[DEBUG] " + message + "\n\n");
+        logger.log(new CustomLevel("DEBUG", 2), message + "\n\n");
     }
 
     public static void blankLine() {
