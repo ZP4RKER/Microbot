@@ -11,7 +11,7 @@ import net.dv8tion.jda.core.entities.Message;
  */
 public class RestartCommand implements ICommand {
 
-    @RegisterCommand(aliases = "restart")
+    @RegisterCommand(aliases = "restart", showInHelp = false)
     public void onCommand(Message message) {
         if (!message.getAuthor().getId().equals("145064570237485056")) return;
 

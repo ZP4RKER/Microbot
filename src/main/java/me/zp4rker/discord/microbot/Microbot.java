@@ -49,6 +49,7 @@ public class Microbot {
         handler.registerCommand(new HelpCommand(handler));
         handler.registerCommand(new InfoCommand(handler));
         handler.registerCommand(new RestartCommand());
+        handler.registerCommand(new TestCommand());
     }
 
 }
