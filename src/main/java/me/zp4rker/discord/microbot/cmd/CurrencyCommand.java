@@ -35,8 +35,9 @@ public class CurrencyCommand implements ICommand {
 
             JSONObject data = JSONUtil.readUrl("http://api.fixer.io/latest?symbols=" + from + "," + to);
 
-            double fromRate = from.equals("EUR") ? 1 : data.getDouble("rates." + from);
-            double toRate = to.equals("EUR") ? 1 : data.getDouble("rates." + to);
+            JSONObject rates = data.getJSONObject("rates");
+            double fromRate = from.equals("EUR") ? 1 : rates.getDouble(from);
+            double toRate = to.equals("EUR") ? 1 : rates.getDouble(to);
 
             if (fromRate == 0 || toRate == 0) {
                 String reply = fromRate == 0 ? (toRate == 0 ? "Both currencies are invalid!" : from + " is an" +
