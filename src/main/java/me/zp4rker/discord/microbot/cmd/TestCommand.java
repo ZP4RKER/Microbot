@@ -15,7 +15,7 @@ public class TestCommand implements ICommand {
     @RegisterCommand(aliases = "test", showInHelp = false)
     public void onCommand(Message message, String[] args) {
         String html = "<p>ZP4RKER</p><img src=\"%avatar%\" />";
-        html = html.replace("%avatar%", "https://discordapp.com/assets/4f004ac9be168ac6ee18fc442a52ab53.svg");
+        html = html.replace("%avatar%", "https://lh3.googleusercontent.com/-pNoP55FB7qs/AAAAAAAAAAI/AAAAAAAAAAA/ACnBePYV606C3fI83Shl_RvYuScLDdNl-w/s32-c-mo/photo.jpg");
         message.getTextChannel().sendMessage("HTML: `" + html + "`").queue();
         Html2Image.fromHtml(html).getImageRenderer().setHeight(500).saveImage(new File("test.png"));
         message.getTextChannel().sendFile(new File("test.png"), null).queue();
