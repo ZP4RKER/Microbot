@@ -16,7 +16,7 @@ public class TestCommand implements ICommand {
 
     @RegisterCommand(aliases = "test", showInHelp = false)
     public void onCommand(Message message, String[] args) {
-        String html = "<p>ZP4RKER</p><img src=\"%avatar%\" />";
+        String html = "<?xml version=\"1.0\"?><p>ZP4RKER</p><img src=\"%avatar%\" />";
         html = html.replace("%avatar%", message.getAuthor().getEffectiveAvatarUrl());
         message.getTextChannel().sendMessage("HTML: `" + html + "`").queue();
         try {
