@@ -2,12 +2,13 @@ package me.zp4rker.discord.microbot.cmd;
 
 import me.zp4rker.discord.core.command.ICommand;
 import me.zp4rker.discord.core.command.RegisterCommand;
-import me.zp4rker.discord.core.yaml.file.Yaml;
-import me.zp4rker.discord.microbot.util.MessageUtil;
-import me.zp4rker.discord.microbot.util.YamlUtil;
+import me.zp4rker.discord.core.exception.ExceptionHandler;
 import me.zp4rker.discord.microbot.util.ColorUtil;
+import me.zp4rker.discord.microbot.util.JSONUtil;
+import me.zp4rker.discord.microbot.util.MessageUtil;
 import net.dv8tion.jda.core.EmbedBuilder;
 import net.dv8tion.jda.core.entities.Message;
+import org.json.JSONObject;
 
 import java.text.DecimalFormat;
 
@@ -32,11 +33,10 @@ public class CurrencyCommand implements ICommand {
             String from = args[1].toUpperCase();
             String to = args[2].toUpperCase();
 
-            Yaml yaml = new Yaml();
-            yaml.loadFromString(YamlUtil.fromUrl("http://api.fixer.io/latest?symbols=" + from + "," + to));
+            JSONObject data = JSONUtil.readUrl("http://api.fixer.io/latest?symbols=" + from + "," + to);
 
-            double fromRate = yaml.getDouble("rates." + from, from.equals("EUR") ? 1 : 0);
-            double toRate = yaml.getDouble("rates." + to, to.equals("EUR") ? 1 : 0);
+            double fromRate = from.equals("EUR") ? 1 : data.getDouble("rates." + from);
+            double toRate = to.equals("EUR") ? 1 : data.getDouble("rates." + to);
 
             if (fromRate == 0 || toRate == 0) {
                 String reply = fromRate == 0 ? (toRate == 0 ? "Both currencies are invalid!" : from + " is an" +
@@ -53,10 +53,9 @@ public class CurrencyCommand implements ICommand {
             message.getChannel().sendMessage(new EmbedBuilder().setTitle(amount + " " + from + " = " + convAmount + " " + to)
                     .setColor(ColorUtil.randomColour()).build()).complete();
         } catch (Exception e) {
-            e.printStackTrace();
-
             if (e instanceof NumberFormatException)
                 MessageUtil.selfDestruct(MessageUtil.sendError("Invalid arguments!", args[0] + " is not a number!", message), 6000);
+            else ExceptionHandler.handleException(e);
         }
     }
 

@@ -1,6 +1,7 @@
 package me.zp4rker.discord.microbot;
 
 import me.zp4rker.discord.core.command.handler.CommandHandler;
+import me.zp4rker.discord.core.exception.ExceptionHandler;
 import me.zp4rker.discord.core.logger.ZLogger;
 import me.zp4rker.discord.microbot.cmd.*;
 import net.dv8tion.jda.core.AccountType;
@@ -22,6 +23,8 @@ public class Microbot {
     public static ExecutorService async = Executors.newCachedThreadPool();
 
     public static void main(String[] args) throws Exception {
+        Thread.setDefaultUncaughtExceptionHandler(new ExceptionHandler());
+
         ZLogger.initialise();
 
         CommandHandler handler = new CommandHandler("/");
@@ -31,7 +34,7 @@ public class Microbot {
         jda = new JDABuilder(AccountType.BOT).setToken(args[0])
                 .setEventManager(new AnnotatedEventManager())
                 .addEventListener(handler)
-                .setGame(Game.of(VERSION + " | /help")).buildAsync();
+                .setGame(Game.of("/help | " + VERSION)).buildAsync();
     }
 
     private static void registerCommands(CommandHandler handler) {
