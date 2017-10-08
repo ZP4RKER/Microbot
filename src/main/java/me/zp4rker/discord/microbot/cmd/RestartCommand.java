@@ -15,11 +15,13 @@ public class RestartCommand implements ICommand {
     public void onCommand(Message message) {
         if (!message.getAuthor().getId().equals("145064570237485056")) return;
 
-        MessageUtil.bypassDeleteLogs(message);
-
-        message.getJDA().shutdown();
-
         try {
+            MessageUtil.bypassDeleteLogs(message);
+
+            Thread.sleep(1500);
+
+            message.getJDA().shutdown();
+
             Runtime.getRuntime().exec("/home/bots/start-microbot.sh").waitFor();
         } catch (Exception e) {
             ExceptionHandler.handleException(e);
