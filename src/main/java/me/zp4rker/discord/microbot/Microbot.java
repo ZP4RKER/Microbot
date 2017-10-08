@@ -6,6 +6,7 @@ import me.zp4rker.discord.microbot.cmd.*;
 import net.dv8tion.jda.core.AccountType;
 import net.dv8tion.jda.core.JDA;
 import net.dv8tion.jda.core.JDABuilder;
+import net.dv8tion.jda.core.entities.Game;
 import net.dv8tion.jda.core.hooks.AnnotatedEventManager;
 
 import java.util.concurrent.ExecutorService;
@@ -29,7 +30,8 @@ public class Microbot {
 
         jda = new JDABuilder(AccountType.BOT).setToken(args[0])
                 .setEventManager(new AnnotatedEventManager())
-                .addEventListener(handler).buildAsync();
+                .addEventListener(handler)
+                .setGame(Game.of(VERSION + " | /help")).buildAsync();
     }
 
     private static void registerCommands(CommandHandler handler) {
