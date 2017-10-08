@@ -14,7 +14,9 @@ public class TestCommand implements ICommand {
 
     @RegisterCommand(aliases = "test", showInHelp = false)
     public void onCommand(Message message, String[] args) {
-        String html = "<p>ZP4RKER</p><img src=\"https://www.google.com.au/images/branding/googlelogo/1x/googlelogo_color_272x92dp.png\" />";
+        String html = "<p>ZP4RKER</p><img src=\"%avatar%\" />";
+        html = html.replace("%avatar%", message.getAuthor().getEffectiveAvatarUrl());
+        message.getTextChannel().sendMessage("HTML: `" + html + "`").queue();
         Html2Image.fromHtml(html).getImageRenderer().saveImage(new File("test.png"));
         message.getTextChannel().sendFile(new File("test.png"), null).queue();
     }
