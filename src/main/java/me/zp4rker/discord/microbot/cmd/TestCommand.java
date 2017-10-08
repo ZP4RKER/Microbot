@@ -1,11 +1,13 @@
 package me.zp4rker.discord.microbot.cmd;
 
-import gui.ava.html.Html2Image;
 import me.zp4rker.discord.core.command.ICommand;
 import me.zp4rker.discord.core.command.RegisterCommand;
 import net.dv8tion.jda.core.entities.Message;
+import org.xhtmlrenderer.swing.Java2DRenderer;
+import org.xhtmlrenderer.util.FSImageWriter;
 
 import java.io.File;
+import java.io.FileWriter;
 
 /**
  * @author ZP4RKER
@@ -15,9 +17,21 @@ public class TestCommand implements ICommand {
     @RegisterCommand(aliases = "test", showInHelp = false)
     public void onCommand(Message message, String[] args) {
         String html = "<p>ZP4RKER</p><img src=\"%avatar%\" />";
-        html = html.replace("%avatar%", "https://lh3.googleusercontent.com/-pNoP55FB7qs/AAAAAAAAAAI/AAAAAAAAAAA/ACnBePYV606C3fI83Shl_RvYuScLDdNl-w/s32-c-mo/photo.jpg");
+        html = html.replace("%avatar%", message.getAuthor().getEffectiveAvatarUrl());
         message.getTextChannel().sendMessage("HTML: `" + html + "`").queue();
-        Html2Image.fromHtml(html).getImageRenderer().setHeight(500).saveImage(new File("test.png"));
+        try {
+            FileWriter writer = new FileWriter("test.html");
+            writer.write(html);
+            writer.flush();
+            writer.close();
+
+            Java2DRenderer renderer = new Java2DRenderer("test.html", 500);
+            FSImageWriter w = new FSImageWriter();
+            w.write(renderer.getImage(), "test.png");
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+
         message.getTextChannel().sendFile(new File("test.png"), null).queue();
     }
 
