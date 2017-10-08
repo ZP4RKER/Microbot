@@ -17,7 +17,7 @@ public class TestCommand implements ICommand {
         String html = "<p>ZP4RKER</p><img src=\"%avatar%\" />";
         html = html.replace("%avatar%", message.getAuthor().getEffectiveAvatarUrl());
         message.getTextChannel().sendMessage("HTML: `" + html + "`").queue();
-        Html2Image.fromHtml(html).getImageRenderer().saveImage(new File("test.png"));
+        Html2Image.fromHtml(html).getImageRenderer().setAutoHeight(true).setWidth(50).saveImage(new File("test.png"));
         message.getTextChannel().sendFile(new File("test.png"), null).queue();
     }
 
