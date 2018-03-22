@@ -1,9 +1,8 @@
-package me.zp4rker.discord.microbot.cmd;
+package co.zpdev.bots.microbot.cmd;
 
-import me.zp4rker.discord.core.command.ICommand;
-import me.zp4rker.discord.core.command.RegisterCommand;
-import me.zp4rker.discord.microbot.util.MessageUtil;
-import me.zp4rker.discord.microbot.util.ColorUtil;
+import co.zpdev.bots.core.command.Command;
+import co.zpdev.bots.microbot.util.ColorUtil;
+import co.zpdev.bots.microbot.util.MessageUtil;
 import net.dv8tion.jda.core.EmbedBuilder;
 import net.dv8tion.jda.core.entities.Message;
 
@@ -14,11 +13,9 @@ import java.util.TimerTask;
 /**
  * @author ZP4RKER
  */
-public class SelfDestructCommand implements ICommand {
+public class SelfDestructCommand {
 
-    @RegisterCommand(aliases = {"sd", "selfdestruct"},
-                    description = "Sends a self-destructing message.",
-                    usage = "{prefix}selfdestruct <DELAY> <MESSAGE>")
+    @Command(aliases = {"sd", "selfdestruct"})
     public void onCommand(Message message, String[] args) {
         MessageUtil.bypassDeleteLogs(message);
 

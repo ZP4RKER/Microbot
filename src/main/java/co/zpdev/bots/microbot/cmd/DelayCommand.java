@@ -1,8 +1,7 @@
-package me.zp4rker.discord.microbot.cmd;
+package co.zpdev.bots.microbot.cmd;
 
-import me.zp4rker.discord.core.command.ICommand;
-import me.zp4rker.discord.core.command.RegisterCommand;
-import me.zp4rker.discord.microbot.util.MessageUtil;
+import co.zpdev.bots.core.command.Command;
+import co.zpdev.bots.microbot.util.MessageUtil;
 import net.dv8tion.jda.core.entities.Message;
 
 import java.util.Arrays;
@@ -12,11 +11,9 @@ import java.util.TimerTask;
 /**
  * @author ZP4RKER
  */
-public class DelayCommand implements ICommand {
+public class DelayCommand {
 
-    @RegisterCommand(aliases = "delay",
-            description = "Sends a delayed message.",
-            usage = "{prefix}delay <DELAY> <MESSAGE>")
+    @Command(aliases = "delay")
     public void onCommand(Message message, String[] args) {
         MessageUtil.bypassDeleteLogs(message);
         try {

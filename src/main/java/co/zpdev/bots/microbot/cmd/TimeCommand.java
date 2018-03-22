@@ -1,7 +1,7 @@
-package me.zp4rker.discord.microbot.cmd;
+package co.zpdev.bots.microbot.cmd;
 
-import me.zp4rker.discord.core.command.ICommand;
-import me.zp4rker.discord.core.command.RegisterCommand;
+import co.zpdev.bots.core.command.Command;
+import co.zpdev.bots.microbot.util.MessageUtil;
 import net.dv8tion.jda.core.EmbedBuilder;
 import net.dv8tion.jda.core.entities.Message;
 
@@ -9,18 +9,14 @@ import java.util.Calendar;
 import java.util.GregorianCalendar;
 import java.util.TimeZone;
 
-import static me.zp4rker.discord.microbot.util.MessageUtil.*;
-
 /**
  * @author ZP4RKER
  */
-public class TimeCommand implements ICommand {
+public class TimeCommand {
 
-    @RegisterCommand(aliases = "time",
-                    description = "Shows the time.",
-                    usage = "{prefix}time <TIMEZONE>")
+    @Command(aliases = "time")
     public void onCommand(Message message, String[] args) {
-        bypassDeleteLogs(message);
+        MessageUtil.bypassDeleteLogs(message);
 
         if (args.length == 0) {
             Calendar time = GregorianCalendar.getInstance();

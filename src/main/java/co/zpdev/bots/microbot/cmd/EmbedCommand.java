@@ -1,9 +1,8 @@
-package me.zp4rker.discord.microbot.cmd;
+package co.zpdev.bots.microbot.cmd;
 
-import me.zp4rker.discord.core.command.ICommand;
-import me.zp4rker.discord.core.command.RegisterCommand;
-import me.zp4rker.discord.microbot.util.MessageUtil;
-import me.zp4rker.discord.microbot.util.ColorUtil;
+import co.zpdev.bots.core.command.Command;
+import co.zpdev.bots.microbot.util.ColorUtil;
+import co.zpdev.bots.microbot.util.MessageUtil;
 import net.dv8tion.jda.core.EmbedBuilder;
 import net.dv8tion.jda.core.entities.Message;
 
@@ -12,12 +11,9 @@ import java.awt.*;
 /**
  * @author ZP4RKER
  */
-public class EmbedCommand implements ICommand {
+public class EmbedCommand {
 
-    @RegisterCommand(aliases = "embed",
-            description = "Creates and sends an embed.",
-            allowSelf = true,
-            usage = "{prefix}embed <TITLE> <MESSAGE> <{F}Footer|{C}Colour|{RGB}R,G,B|{HEX}#000000|{I}IconURL>")
+    @Command(aliases = "embed")
     public void onCommand(Message message, String[] args) {
         MessageUtil.bypassDeleteLogs(message);
 

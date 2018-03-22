@@ -1,10 +1,8 @@
-package me.zp4rker.discord.microbot.cmd;
+package co.zpdev.bots.microbot.cmd;
 
-import me.zp4rker.discord.core.command.ICommand;
-import me.zp4rker.discord.core.command.RegisterCommand;
-import me.zp4rker.discord.core.logger.ZLogger;
-import me.zp4rker.discord.microbot.util.MessageUtil;
-import me.zp4rker.discord.microbot.util.ColorUtil;
+import co.zpdev.bots.core.command.Command;
+import co.zpdev.bots.microbot.util.ColorUtil;
+import co.zpdev.bots.microbot.util.MessageUtil;
 import net.dv8tion.jda.core.EmbedBuilder;
 import net.dv8tion.jda.core.entities.Message;
 
@@ -16,20 +14,12 @@ import java.util.Scanner;
 /**
  * @author ZP4RKER
  */
-public class JokeCommand implements ICommand {
+public class JokeCommand {
 
-    @RegisterCommand(aliases = "joke",
-            description = "Tells a joke.",
-            usage = "{prefix}joke")
+    @Command(aliases = "joke")
     public void onCommand(Message message) {
         MessageUtil.bypassDeleteLogs(message);
         try {
-            /*Yaml yaml = new Yaml();
-            yaml.loadFromString(YamlUtil.fromUrl("http://tambal.azurewebsites.net/joke/random"));
-
-            message.getChannel().sendMessage(new EmbedBuilder()
-                    .setTitle(yaml.getString("joke"))
-                    .setColor(ColorUtil.randomColour()).build()).complete();*/
             URL url = new URL("https://icanhazdadjoke.com/");
             URLConnection uc = url.openConnection();
             uc.addRequestProperty("Accept", "text/plain");
@@ -48,7 +38,6 @@ public class JokeCommand implements ICommand {
                     .setColor(ColorUtil.randomColour()).build()).complete();
         } catch (Exception e) {
             e.printStackTrace();
-            ZLogger.warn("Could not send joke!");
         }
     }
 

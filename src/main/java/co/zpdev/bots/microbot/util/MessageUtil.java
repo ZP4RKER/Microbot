@@ -1,4 +1,4 @@
-package me.zp4rker.discord.microbot.util;
+package co.zpdev.bots.microbot.util;
 
 import net.dv8tion.jda.core.EmbedBuilder;
 import net.dv8tion.jda.core.Permission;

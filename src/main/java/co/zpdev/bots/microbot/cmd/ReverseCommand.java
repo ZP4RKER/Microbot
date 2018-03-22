@@ -1,20 +1,17 @@
-package me.zp4rker.discord.microbot.cmd;
+package co.zpdev.bots.microbot.cmd;
 
-import me.zp4rker.discord.core.command.ICommand;
-import me.zp4rker.discord.core.command.RegisterCommand;
-import me.zp4rker.discord.microbot.util.MessageUtil;
-import me.zp4rker.discord.microbot.util.ColorUtil;
+import co.zpdev.bots.core.command.Command;
+import co.zpdev.bots.microbot.util.ColorUtil;
+import co.zpdev.bots.microbot.util.MessageUtil;
 import net.dv8tion.jda.core.EmbedBuilder;
 import net.dv8tion.jda.core.entities.Message;
 
 /**
  * @author ZP4RKER
  */
-public class ReverseCommand implements ICommand {
+public class ReverseCommand {
 
-    @RegisterCommand(aliases = "reverse",
-                    description = "Returns the provided string backwards.",
-                    usage = "{prefix}reverse <TEXT>")
+    @Command(aliases = "reverse")
     public void onCommand(Message message, String[] args) {
         MessageUtil.bypassDeleteLogs(message);
 

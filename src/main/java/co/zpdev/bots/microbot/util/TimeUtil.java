@@ -1,4 +1,4 @@
-package me.zp4rker.discord.microbot.util;
+package co.zpdev.bots.microbot.util;
 
 import java.util.Calendar;
 import java.util.GregorianCalendar;

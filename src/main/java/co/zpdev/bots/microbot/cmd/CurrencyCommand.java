@@ -1,11 +1,9 @@
-package me.zp4rker.discord.microbot.cmd;
+package co.zpdev.bots.microbot.cmd;
 
-import me.zp4rker.discord.core.command.ICommand;
-import me.zp4rker.discord.core.command.RegisterCommand;
-import me.zp4rker.discord.core.exception.ExceptionHandler;
-import me.zp4rker.discord.microbot.util.ColorUtil;
-import me.zp4rker.discord.microbot.util.JSONUtil;
-import me.zp4rker.discord.microbot.util.MessageUtil;
+import co.zpdev.bots.core.command.Command;
+import co.zpdev.bots.microbot.util.ColorUtil;
+import co.zpdev.bots.microbot.util.JSONUtil;
+import co.zpdev.bots.microbot.util.MessageUtil;
 import net.dv8tion.jda.core.EmbedBuilder;
 import net.dv8tion.jda.core.entities.Message;
 import org.json.JSONObject;
@@ -15,11 +13,9 @@ import java.text.DecimalFormat;
 /**
  * @author ZP4RKER
  */
-public class CurrencyCommand implements ICommand {
+public class CurrencyCommand {
 
-    @RegisterCommand(aliases = "currency",
-                    description = "Converts specified value to different currencies.",
-                    usage = "{prefix}currency <AMOUNT> <CURRENCY-FROM> <CURRENCY-TO>")
+    @Command(aliases = "currency")
     public void onCommand(Message message, String[] args) {
         if (args.length != 3) {
             MessageUtil.selfDestruct(MessageUtil.sendError("Invalid arguments!", "Wrong arguments!\n\nUsage: `.currency <AMOUNT> " +
@@ -56,7 +52,7 @@ public class CurrencyCommand implements ICommand {
         } catch (Exception e) {
             if (e instanceof NumberFormatException)
                 MessageUtil.selfDestruct(MessageUtil.sendError("Invalid arguments!", args[0] + " is not a number!", message), 6000);
-            else ExceptionHandler.handleException(e);
+            else e.printStackTrace();
         }
     }
 

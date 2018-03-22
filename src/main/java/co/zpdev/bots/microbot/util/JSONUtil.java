@@ -1,6 +1,5 @@
-package me.zp4rker.discord.microbot.util;
+package co.zpdev.bots.microbot.util;
 
-import me.zp4rker.discord.core.exception.ExceptionHandler;
 import org.json.JSONObject;
 
 import java.io.BufferedReader;
@@ -26,7 +25,7 @@ public class JSONUtil {
             }
             data = sb.toString();
         } catch (Exception e) {
-            ExceptionHandler.handleException(e);
+            e.printStackTrace();
         }
         return data.isEmpty() ? new JSONObject() : new JSONObject(data);
     }
@@ -52,7 +51,7 @@ public class JSONUtil {
                     data = sb.toString().replaceAll("\\\\([\"/])", "$1");
             }
         } catch (Exception e) {
-            ExceptionHandler.handleException(e);
+            e.printStackTrace();
         }
         return data.isEmpty() ? new JSONObject() : new JSONObject(data);
     }
